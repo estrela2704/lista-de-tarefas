@@ -1,0 +1,42 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f1f1f1;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tarefa{
+  margin-left: 10px;
+  width: 98%;
+}
+
+.tarefa a{
+  text-decoration: none;
+  text-color: #0A5ED7;
+  text-align: center;
+}
+
+.opcoes {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px  solid #e0e0e0;
+  border-left: none;
+}
+
+.titulo-t{
+  margin: 15px 0px;
+}
+
+.botao{
+  margin-top: 15px;
+}
