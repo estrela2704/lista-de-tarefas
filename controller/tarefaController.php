@@ -8,11 +8,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $tipo = $_POST['tipo'];
   $crud = new TarefaDAO;
   if ($tipo == 'incluir') {
-    $idtarefas = $crud->novaTarefa($titulo, $desc);
-    $dados = $crud->dadosUser($idtarefas);
+    $idUsuario = $_POST['idUser'];
+    $idtarefas = $crud->novaTarefa($titulo, $desc, $idUsuario);
+    $dados = $crud->dadosTarefa($idtarefas);
     $crud->buildTarefa($dados);
-    print_r($dados);
-    //header("Location:../view/home.php");
+    //print_r($dados);
+    header("Location:../view/home.php");
     exit();
   } else if($tipo == 'editar') {
     $id = $_POST['id'];

@@ -21,6 +21,7 @@ class UserDAO{
     }
 
     public function autenticar($email, $senha){ 
+
         $conn = $this->dbConexao->conectBD();
         $query = "SELECT id, email, senha FROM user WHERE email = :email AND senha = :senha";
         $stmt = $conn->prepare($query);
@@ -87,10 +88,9 @@ class UserDAO{
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        $dadosUsuario = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $dadosUsuario = $stmt->fetch(PDO::FETCH_ASSOC);
             
         return $dadosUsuario;
     }
-    
 
 }

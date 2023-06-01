@@ -17,7 +17,7 @@ class TarefaDAO{
         return $tarefa;
     }
 
-    public function dadosUser($id){
+    public function dadosTarefa($id){
         $conn = $this->conexao->conectBD();
         $query = "SELECT idtarefas, titulo, descricao FROM tarefas WHERE idtarefas = :id";
         $stmt = $conn->prepare($query);
@@ -29,12 +29,13 @@ class TarefaDAO{
         return $dadosTarefa;
     }
 
-    public function novaTarefa(string $titulo, string $descricao){
+    public function novaTarefa(string $titulo, string $descricao, $iduser){
         $conn = $this->conexao->conectBD();
-        $query = "INSERT INTO tarefas(titulo, descricao) VALUES (:titulo, :descricao)";
+        $query = "INSERT INTO tarefas(titulo, descricao, id_user) VALUES (:titulo, :descricao, :iduser)";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(':titulo', $titulo);
         $stmt->bindParam(':descricao', $descricao);
+        $stmt->bindParam(':iduser', $iduser);
         try{
           $stmt->execute();
           $idTarefa = $conn->lastInsertId();
@@ -100,17 +101,20 @@ class TarefaDAO{
         }
       }
 
-      public function dadosTarefa(){
+      public function listbyId($id){
         $conn = $this->conexao->conectBD();
-        $idTarefa = $conn->lastInsertId();
-        $query = "SELECT titulo, descricao FROM tarefas WHERE idtarefas = :id";
+        $query = 'SELECT * FROM tarefas WHERE id_user = :id';
         $stmt = $conn->prepare($query);
-        $stmt->bindParam(':id', $idTarefa);
-        $stmt->execute();
-
-        $dadosTarefa = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $dadosTarefa;
+        $stmt->bindParam(':id', $id);
+        try{
+          $stmt->execute();
+          $result = $stmt->fetchAll();
+          //print_r($result);
+          return $result;
+        } catch(PDOException $e){
+          echo "Erro ao listar tarefas" . $e->getMessage();
+        }
       }
+
 
 }

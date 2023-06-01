@@ -17,6 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if($user->autenticar($email, $senha) >= 1){
                 $id = $user->getId($email, $senha);
                 $_SESSION['id'] = $id['id'];
+                $dados = $user->dadosUser($id['id']);
+                $_SESSION['nome'] = $dados['nome'];
+                $_SESSION['auth'] = true;
                 header("Location: ../view/home.php");
                 exit();
                 
@@ -35,6 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $user->buildUser($dados);
                     echo "Registrado!";
                     $_SESSION['id'] = $id;
+                    $_SESSION['nome'] = $dados['nome'];
+                    $_SESSION['auth'] = true;
                     header("Location: ../view/home.php");
                     exit();
                 }catch (PDOException $e) {
