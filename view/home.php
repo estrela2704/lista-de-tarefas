@@ -15,7 +15,7 @@ $listar = $tarefa->listbyId($id);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CRUD</title>
   <script>
-    <?php if($_SESSION['auth'] != 1): ?>
+    <?php if(!isset($_SESSION['auth']) || $_SESSION['auth'] == 0): ?>
       alert("Voce precisa estar logado!");
       window.location.href = "login.php";
     <?php endif; ?>
