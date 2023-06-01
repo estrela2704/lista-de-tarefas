@@ -1,6 +1,7 @@
 <?php 
-require_once('../model/tarefaModel.php');
-$tarefa = new Tarefa;
+session_start();
+require_once('../DAO/tarefaDAO.php');
+$tarefa = new TarefaDAO;
 $listar = $tarefa->listarTodas();
 ?>
 

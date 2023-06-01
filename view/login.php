@@ -19,7 +19,6 @@
         <?php endif;?>
         <h2>Login</h2>
         <form action="../controller/userController.php" method="post">
-          <input type="text" name="nome" placeholder="Usuário" required>
           <input type="text" name="email" placeholder="E-mail" required>
           <input type="password" name="senha" placeholder="Senha" required>
           <input type="hidden" name="tipo" value="login">

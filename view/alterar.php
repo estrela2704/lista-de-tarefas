@@ -1,7 +1,7 @@
 <?php 
-require_once('../model/tarefaModel.php');
+require_once('../DAO/tarefaDAO.php');
   $id = $_POST['id'];
-  $tarefa = new Tarefa;
+  $tarefa = new TarefaDAO;
   $listar = $tarefa->listarEsp($id);
 ?>
 

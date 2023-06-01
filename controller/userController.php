@@ -2,22 +2,24 @@
 session_start();
 require_once('../model/db.php');
 require_once('../model/error.php');
-require_once('../model/UserDAO.php');
+require_once('../DAO/UserDAO.php');
 
 $user = new UserDAO;
 $erro = new Erro;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
-    $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $tipo = $_POST['tipo'];
-    print_r($_POST);
+    //print_r($_POST);
     if(isset($email) && isset($senha)){
         if($tipo == 'login'){
-            if($user->autenticar($email, $senha)){
+            if($user->autenticar($email, $senha) >= 1){
+                $id = $user->getId($email, $senha);
+                $_SESSION['id'] = $id['id'];
                 header("Location: ../view/home.php");
                 exit();
+                
             } else {
                 $erro->setMensagem('email ou senha incorretos!');
                 $_SESSION['erro'] = $erro->getMensagem();
@@ -25,10 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit();
             }
         } else if($tipo == 'register'){
+            $nome = $_POST['nome'];
             if(!$user->verificaRegistro($email)){
                 try{
-                    $user->registrar($nome, $email, $senha);
+                    $id = $user->registrar($nome, $email, $senha);
+                    $dados = $user->dadosUser($id);
+                    $user->buildUser($dados);
                     echo "Registrado!";
+                    $_SESSION['id'] = $id;
                     header("Location: ../view/home.php");
                     exit();
                 }catch (PDOException $e) {
