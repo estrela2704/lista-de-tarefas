@@ -12,7 +12,7 @@ session_start();
   <link rel="stylesheet" href="../assets/bootstrap-5.0.2/dist/css/bootstrap.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <script>
-    <?php if($_SESSION['auth'] != 1): ?>
+    <?php if(!isset($_SESSION['auth']) || $_SESSION['auth'] == 0): ?>
       alert("Voce precisa estar logado!");
       window.location.href = "login.php";
     <?php endif; ?>
