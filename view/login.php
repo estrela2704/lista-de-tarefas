@@ -1,5 +1,6 @@
 <?php 
   require_once('../controller/userController.php');
+  session_destroy();
 ?>
 
 <!DOCTYPE html>

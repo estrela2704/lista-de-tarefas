@@ -5,7 +5,7 @@ class TarefaDAO{
     private $conexao;
 
     public function __construct(){
-        $this->conexao = new ConexaoBD('localhost', 'system', 'root', '');
+        $this->conexao = new ConexaoBD('localhost', 'system', 'root', '023922');
       }
 
     public function buildTarefa(array $arr){

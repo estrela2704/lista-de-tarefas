@@ -30,7 +30,7 @@ $listar = $tarefa->listbyId($id);
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center">
           <h1>Lisa de tarefas <?php echo $_SESSION['nome'] ?></h1>
-          <a class="btn btn-primary" href="logout.php">Logout</a>
+          <a class="btn btn-primary" href="login.php">Logout</a>
         </div>
       </div>
     </div>

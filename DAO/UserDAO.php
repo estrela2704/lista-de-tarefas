@@ -7,7 +7,7 @@ class UserDAO{
     private $dbConexao;
 
     public function __construct(){
-        $this->dbConexao = new Conexaobd('localhost', 'system', 'root', '');
+        $this->dbConexao = new Conexaobd('localhost', 'system', 'root', '023922');
     }
 
     public function buildUser(array $arr){
